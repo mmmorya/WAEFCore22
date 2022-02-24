@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WAEFCore22.AppCode.BusinessLogic;
+using WAEFCore22.AppCode.Connections;
+using WAEFCore22.AppCode.Interface;
 
 namespace WAEFCore22
 {
@@ -22,7 +26,12 @@ namespace WAEFCore22
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddMvc();
+            services.AddDbContextPool<AppDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DbCon"))
+                );
+
+            services.AddScoped <IStudent_BL, Student_BL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
