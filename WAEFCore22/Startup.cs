@@ -9,8 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WAEFCore22.AppCode.BusinessLogic;
+using WAEFCore22.AppCode.BusinessLogic.Repos;
 using WAEFCore22.AppCode.Connections;
 using WAEFCore22.AppCode.Interface;
+using WAEFCore22.AppCode.Interface.Repos;
 
 namespace WAEFCore22
 {
@@ -32,6 +34,7 @@ namespace WAEFCore22
                 );
 
             services.AddScoped <IStudent_BL, Student_BL>();
+            services.AddSingleton <IUnitOfWorkFactory, UnitOfWorkFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
