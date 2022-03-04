@@ -34,7 +34,7 @@ namespace WAEFCore22
                 );
 
             services.AddScoped <IStudent_BL, Student_BL>();
-            services.AddSingleton <IUnitOfWorkFactory, UnitOfWorkFactory>();
+            services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

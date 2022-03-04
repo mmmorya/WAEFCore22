@@ -38,6 +38,15 @@ namespace WAEFCore22.Controllers
             return Json(d);
         }
 
+
+        [HttpGet]
+        public IActionResult GetStudentsV2()
+        {
+            IStudent_GenRP student_GenRP = new Student_GenRP(_unitOfWorkFactory);
+            var d = student_GenRP.GetAllStudents();
+            return Json(d);
+        }
+
         [HttpPost]
         public IActionResult GetStudentByGRPM(int id)
         {

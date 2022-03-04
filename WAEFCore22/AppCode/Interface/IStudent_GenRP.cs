@@ -10,5 +10,7 @@ namespace WAEFCore22.AppCode.Interface
     {
 
         Task<List<Student_Db>> GetAllStudentRP(int id);
+
+        Task<IEnumerable<Student_Db>> GetAllStudents();
     }
 }

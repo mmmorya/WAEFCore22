@@ -19,10 +19,36 @@ namespace WAEFCore22.AppCode.BusinessLogic
 
         public async Task<List<Student_Db>> GetAllStudentRP(int id)
         {
-            using (var unitofwork = _unitOfWorkFactory.Create())
+            try
             {
-                var data = await unitofwork.Repository().FindAsync<Student_Db>(x => x._ID == id);
-                return data.ToList();
+                using (var unitofwork = _unitOfWorkFactory.Create())
+                {
+                    var data = await unitofwork.Repository().FindAsync<Student_Db>(x => x._ID == id);
+                    return data.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
+        }
+
+        public async Task<IEnumerable<Student_Db>> GetAllStudents()
+        {
+            try
+            {
+                using (var unitofwork = _unitOfWorkFactory.Create())
+                {
+                    var data = await unitofwork.Repository().FindAllRecords<Student_Db>();
+                    return data.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }
